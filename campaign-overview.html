@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaign Overview - Amplify MS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Amplify Marketing Studio</h1>
+        <nav>
+             <a href="dashboard-teacher.html">Dashboard</a>
+            <a href="index.html" class="logout-link">Logout</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h2>Campaign Overview: Introduction to Programming Course</h2>
+         <p style="font-style: italic; color: #555;">Draft saved automatically.</p>
+
+        <div class="overview-layout">
+            <div class="main-content">
+                <section class="overview-section">
+                    <h3>📌 Campaign Info (Scraped Data Summary)</h3>
+                    <p><strong>Course Type:</strong> Introduction to Programming</p>
+                    <p><strong>Dates:</strong> 2025-07-15 to 2025-07-19</p>
+                    <p><strong>Venue:</strong> Community Tech Center, 123 Main St, Anytown, CA 98765</p>
+                    <p><strong>Contact:</strong> Jane Doe (jane.doe@email.com / 555-1234)</p>
+                    <p><strong>Teachers:</strong> John Smith, Alice Brown</p>
+                    <p><strong>Course URL:</strong> <a href="#" target="_blank">https://your-course-platform.com/register/course-123</a></p>
+                    <button class="button" style="font-size: 0.8em; padding: 5px 10px; background-color: #6c757d;" onclick="alert('Placeholder: Edit scraped info manually')">Edit Info</button>
+                </section>
+
+                <section class="overview-section">
+                    <h3>📊 AI-Generated Insight Report</h3>
+                    <p><strong>Description:</strong> Introductory course targeting beginners interested in coding fundamentals.</p>
+                    <p><strong>Goals:</strong> Drive registrations, increase awareness of coding programs.</p>
+                    <p><strong>Target Audience:</strong> Students (high school/college), career changers, hobbyists in the Anytown area (Zip: 98765). Age 16-45. Interest in tech, problem-solving.</p>
+                    <p><strong>Messaging Do's:</strong> Emphasize 'no experience needed', 'career skills', 'fun', 'hands-on'.</p>
+                    <p><strong>Messaging Don'ts:</strong> Avoid overly technical jargon, don't assume prior knowledge.</p>
+                    <p><strong>Competitive Alternatives:</strong> Online coding bootcamps (Codecademy, Udemy), local university extension courses.</p>
+                </section>
+
+                 <section class="overview-section">
+                    <h3>📆 AI-Generated Marketing Plan</h3>
+                     <table>
+                        <thead>
+                            <tr>
+                                <th>Milestone</th>
+                                <th>Tactic</th>
+                                <th>Date</th>
+                                <th>Channel</th>
+                                <th>Owner</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Launch Announce</td>
+                                <td>Initial social media blast</td>
+                                <td>2025-05-01</td>
+                                <td>Facebook, Instagram</td>
+                                <td>Teacher (You)</td>
+                            </tr>
+                            <tr>
+                                <td>Early Bird Promo</td>
+                                <td>Email campaign to past attendees</td>
+                                <td>2025-05-15</td>
+                                <td>Email</td>
+                                <td>Teacher (You)</td>
+                            </tr>
+                             <tr>
+                                <td>Community Outreach</td>
+                                <td>Post on local community boards</td>
+                                <td>2025-06-01</td>
+                                <td>Local FB Groups, WhatsApp</td>
+                                <td>Teacher (You)</td>
+                            </tr>
+                             <tr>
+                                <td>Final Push</td>
+                                <td>Targeted social media ads</td>
+                                <td>2025-07-01</td>
+                                <td>Facebook Ads</td>
+                                <td>(Requires Nat. Marketing?)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                     <button class="button" style="font-size: 0.8em; padding: 5px 10px; background-color: #6c757d;" onclick="alert('Placeholder: Edit marketing plan')">Edit Plan</button>
+                </section>
+
+                 <section class="overview-section">
+                    <h3>🖼️ Design Assets Gallery (Editable via Chatbot)</h3>
+                    <h4>Facebook</h4>
+                    <div class="asset-gallery">
+                        <div class="asset-item">
+                            <h4>Layout 1 - Image A</h4>
+                            <img src="placeholder-image-fb-1a.png" alt="Placeholder Facebook Asset 1a">
+                             <p id="fb-copy-1"><strong>Copy:</strong> Learn to code this summer! Join our Intro to Programming course. No experience needed. #coding #learntocode #anytown</p>
+                             <p><strong>Quote:</strong> <span id="fb-quote-1">"Unlock your tech potential!" (Quote 1 of 4)</span></p>
+                             <div class="asset-options">
+                                <span onclick="simulateChatbotInteraction('edit fb-copy-1')">Edit Copy</span>
+                                <span onclick="simulateChatbotInteraction('swap image fb-1a')">Swap Image</span>
+                                <span onclick="simulateChatbotInteraction('pick quote fb-1')">Pick Quote</span>
+                             </div>
+                        </div>
+                        <div class="asset-item">
+                            <h4>Layout 1 - Image B</h4>
+                             <img src="placeholder-image-fb-1b.png" alt="Placeholder Facebook Asset 1b">
+                             <p><strong>Copy:</strong> (Same as Image A initially)</p>
+                             <p><strong>Quote:</strong> (Same as Image A initially)</p>
+                        </div>
+                        </div>
+                     <h4>Instagram</h4>
+                     <div class="asset-gallery">
+                        <div class="asset-item">
+                             <h4>Layout 1 - Image C</h4>
+                            <img src="placeholder-image-ig-1c.png" alt="Placeholder Instagram Asset 1c">
+                             <p id="ig-copy-1"><strong>Copy:</strong> Code your future! 🚀 Beginner-friendly programming course in Anytown. Sign up link in bio! #codinglife #techskills</p>
+                             <p><strong>Quote:</strong> <span id="ig-quote-1">"Start your coding journey." (Quote 2 of 4)</span></p>
+                             <div class="asset-options">
+                                <span onclick="simulateChatbotInteraction('edit ig-copy-1')">Edit Copy</span>
+                                <span onclick="simulateChatbotInteraction('swap image ig-1c')">Swap Image</span>
+                                <span onclick="simulateChatbotInteraction('pick quote ig-1')">Pick Quote</span>
+                            </div>
+                        </div>
+                         </div>
+                    <h4>WhatsApp / Email</h4>
+                     <div class="asset-gallery">
+                         <div class="asset-item">
+                            <h4>Email Header Image D</h4>
+                             <img src="placeholder-image-email-1d.png" alt="Placeholder Email Asset 1d">
+                             <p id="email-copy-1"><strong>Subject:</strong> Learn Programming in Anytown!</p>
+                             <p><strong>Body Snippet:</strong> Hi [Name], Interested in learning valuable tech skills? Our Introduction to Programming course starts July 15th...</p>
+                             <p><strong>Quote:</strong> <span id="email-quote-1">"Build something amazing." (Quote 3 of 4)</span></p>
+                             <div class="asset-options">
+                                <span onclick="simulateChatbotInteraction('edit email-copy-1')">Edit Copy</span>
+                                <span onclick="simulateChatbotInteraction('swap image email-1d')">Swap Image</span>
+                                <span onclick="simulateChatbotInteraction('pick quote email-1')">Pick Quote</span>
+                             </div>
+                         </div>
+                         </div>
+                </section>
+
+                 <a href="preview-publish.html" class="button" style="float: right; margin-top: 20px;">Confirm & Proceed to Preview</a>
+
+            </div> <aside class="chatbot-panel">
+                <h3>💬 AI Chatbot Assistant</h3>
+                <div class="chat-history" id="chat-history">
+                    <p class="bot-msg">Hi! How can I help you refine these marketing assets?</p>
+                    <p class="bot-msg">You can ask me to: Edit copy, pick quotes (e.g., 'Use quote 3 for Facebook'), swap images/layouts, change channels, or ask for advice (e.g., 'Make the Facebook message more exciting').</p>
+                    </div>
+                <div class="chatbot-input">
+                    <input type="text" id="chatbot-input" placeholder="Type your request...">
+                    <button onclick="sendToChatbot()">Send</button>
+                </div>
+                <div id="real-time-preview" style="margin-top:15px; padding:10px; border: 1px dashed #ccc; background-color: #fff; font-size:0.9em;">
+                    <p><em>(Real-time preview of edits would appear here based on chatbot interaction)</em></p>
+                     <p id="preview-content-placeholder">e.g., If you asked to change copy, the updated text would show here.</p>
+                </div>
+            </aside> </div> </div>
+
+    <script>
+        const chatHistory = document.getElementById('chat-history');
+        const chatInput = document.getElementById('chatbot-input');
+        const previewPlaceholder = document.getElementById('preview-content-placeholder');
+
+        // Simulate clicking options in the asset gallery
+        function simulateChatbotInteraction(command) {
+            chatInput.value = command; // Put the command in the input box
+            sendToChatbot(); // Simulate sending it
+        }
+
+        function sendToChatbot() {
+            const userMessage = chatInput.value.trim();
+            if (!userMessage) return;
+
+            // Display user message
+            const userP = document.createElement('p');
+            userP.classList.add('user-msg');
+            userP.textContent = userMessage;
+            chatHistory.appendChild(userP);
+
+            // Simple canned responses based on input
+            let botResponse = "Okay, I can help with that. ";
+            let previewUpdate = "(Simulated action based on your request)";
+
+            if (userMessage.includes("edit copy") || userMessage.includes("change text")) {
+                botResponse += "What would you like the new copy to say?";
+                previewUpdate = "The copy for [Target Asset] is now highlighted/editable or showing proposed changes here.";
+                // Example: Highlight the target copy element
+                const targetId = userMessage.split(" ")[userMessage.split(" ").length - 1]; // simplistic ID grab
+                 const targetElement = document.getElementById(targetId);
+                 if(targetElement) {
+                     targetElement.style.backgroundColor = "yellow"; // Highlight simulation
+                     setTimeout(()=> {targetElement.style.backgroundColor = ""}, 3000); // Remove highlight
+                 }
+
+            } else if (userMessage.includes("pick quote") || userMessage.includes("use quote")) {
+                 const quoteNumMatch = userMessage.match(/\d+/); // Find number
+                 const quoteNum = quoteNumMatch ? quoteNumMatch[0] : 'X';
+                 const targetAssetMatch = userMessage.match(/(facebook|instagram|email)/i);
+                 const targetAsset = targetAssetMatch ? targetAssetMatch[0] : 'the selected asset';
+
+                 botResponse += `Okay, I've selected Quote ${quoteNum} for ${targetAsset}.`;
+                 previewUpdate = `Quote ${quoteNum} is now applied to ${targetAsset}. Example Quote ${quoteNum}: 'Innovate. Create. Code.'`;
+                  // Example: Update quote span
+                 const targetQuoteSpanId = (targetAsset === 'facebook' ? 'fb-quote-1' : (targetAsset === 'instagram' ? 'ig-quote-1' : 'email-quote-1'));
+                 const quoteSpan = document.getElementById(targetQuoteSpanId);
+                 if(quoteSpan) {
+                      const quotes = ["'Unlock your tech potential!'", "'Start your coding journey.'", "'Build something amazing.'", "'Code the future, today!'"];
+                      if (quoteNum > 0 && quoteNum <= quotes.length) {
+                           quoteSpan.textContent = `${quotes[quoteNum-1]} (Quote ${quoteNum} of 4)`;
+                           quoteSpan.style.fontWeight = 'bold';
+                            setTimeout(()=> {quoteSpan.style.fontWeight = 'normal'}, 3000);
+                      } else {
+                           quoteSpan.textContent = `(Invalid Quote Number Selected)`;
+                      }
+
+                 }
+
+            } else if (userMessage.includes("swap image") || userMessage.includes("change layout")) {
+                botResponse += "Showing alternative images/layouts now. Which one do you prefer?";
+                 previewUpdate = "Alternative image/layout options are now displayed for [Target Asset].";
+            } else if (userMessage.includes("how do I improve") || userMessage.includes("make it more")) {
+                botResponse += "Consider adding a clear Call To Action (CTA) like 'Register Today!' or highlighting a specific benefit, like 'Get job-ready skills'.";
+                 previewUpdate = "(Displaying suggested improvements or tips)";
+            } else if (userMessage.includes("change channel") || userMessage.includes("use for whatsapp")) {
+                botResponse += "Okay, I can adapt this asset for WhatsApp. I'll adjust the format and copy tone.";
+                 previewUpdate = "Asset preview adapted for WhatsApp channel is shown here.";
+            }
+            else {
+                botResponse = "Sorry, I didn't quite understand that. You can ask me to edit copy, pick quotes, swap images, or ask for advice.";
+                 previewUpdate = "";
+            }
+
+            // Display bot response (simulate delay)
+            setTimeout(() => {
+                const botP = document.createElement('p');
+                botP.classList.add('bot-msg');
+                botP.textContent = botResponse;
+                chatHistory.appendChild(botP);
+                chatHistory.scrollTop = chatHistory.scrollHeight; // Scroll to bottom
+
+                // Update preview placeholder
+                previewPlaceholder.textContent = previewUpdate;
+            }, 800);
+
+            chatInput.value = ''; // Clear input
+        }
+    </script>
+
+</body>
+</html>

@@ -5,76 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amplify Marketing Studio - Login</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body> <div class="login-card">
-        <div class="login-top-bar">
-            <div class="login-logo">A</div> </div>
-        <div class="login-form-content">
-            <div class="role-tabs">
-                <button class="tab active" id="tab-teacher" onclick="selectRole('teacher')">Teacher</button>
-                <button class="tab" id="tab-marketing" onclick="selectRole('national')">Marketing</button>
-                 <input type="hidden" id="selected-role" name="role" value="teacher">
-            </div>
+<body>
+    <div class="container login-form">
+        <h2>Welcome to Amplify Marketing Studio</h2>
+        <form>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
-                </div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="••••••••" required>
-                </div>
+            <fieldset class="role-selection">
+                <legend>Select Your Role:</legend>
+                <label>
+                    <input type="radio" name="role" value="teacher" checked> Teacher
+                </label>
+                <label>
+                    <input type="radio" name="role" value="national"> National Marketing
+                </label>
+            </fieldset>
 
-                <div class="form-options">
-                    <label>
-                        <input type="checkbox" name="remember"> Remember me
-                    </label>
-                    <a href="#">Forgot password?</a>
-                </div>
-
-                <button type="button" class="button full-width" onclick="loginUser()">Log In</button>
-            </form>
-        </div>
+            <a href="dashboard-teacher.html" class="button">Login</a>
+            <p style="font-size: 0.8em; margin-top: 10px;">(Select 'Teacher' role for this prototype flow)</p>
+        </form>
     </div>
-
-    <script>
-        function selectRole(role) {
-            document.getElementById('tab-teacher').classList.remove('active');
-            document.getElementById('tab-marketing').classList.remove('active');
-            document.getElementById('selected-role').value = role;
-
-            if (role === 'teacher') {
-                document.getElementById('tab-teacher').classList.add('active');
-            } else {
-                document.getElementById('tab-marketing').classList.add('active');
-            }
-            console.log("Selected role:", role); // For debugging
-        }
-
-        function loginUser() {
-            const selectedRole = document.getElementById('selected-role').value;
-            // In a real app, you'd validate credentials here.
-            // For the prototype, redirect based on role.
-            if (selectedRole === 'teacher') {
-                window.location.href = 'dashboard-teacher.html';
-            } else {
-                // Redirect to National Marketing dashboard (if it existed)
-                // For now, just alert or redirect to teacher dashboard as fallback
-                alert('Prototype: Redirecting to National Marketing Dashboard (if available). Using Teacher dashboard as fallback.');
-                 window.location.href = 'dashboard-teacher.html'; // Fallback
-            }
-        }
-
-         // Add page-view class to body on other pages using JS or server-side logic
-         // For prototype, we'll assume other pages won't have the body centering
-         // If you want other pages to NOT be centered, add a class to their body tags
-         // e.g., <body class="page-view"> in dashboard-teacher.html etc.
-
-    </script>
 </body>
 </html>

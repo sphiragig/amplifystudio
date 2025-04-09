@@ -1,546 +1,293 @@
 /* General Styles */
-:root {
-    --primary-blue: #4A55E7; /* Vibrant blue/purple from image */
-    --primary-blue-darker: #3A45C7;
-    --light-gray-bg: #F7FAFC; /* Background for inactive elements */
-    --light-gray-border: #E2E8F0;
-    --medium-gray-text: #718096;
-    --dark-gray-text: #2D3748;
-    --white: #FFFFFF;
-    --body-bg-start: #EDE9FE; /* Light purple for gradient */
-    --body-bg-end: #E0E7FF;   /* Light blue for gradient */
-}
-
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-family: sans-serif;
     margin: 0;
     padding: 0;
-    /* Subtle gradient background */
-    background: linear-gradient(135deg, var(--body-bg-end) 0%, var(--body-bg-start) 100%);
-    color: var(--dark-gray-text);
-    line-height: 1.6;
-    min-height: 100vh; /* Ensure gradient covers full height */
-    display: flex; /* Helps center login vertically */
-    align-items: center; /* Helps center login vertically */
-    justify-content: center; /* Helps center login horizontally */
+    background-color: #f4f7f6;
+    color: #333;
 }
 
-/* General Container/Card Style */
-.card-container {
-    max-width: 1100px; /* Adjust as needed */
-    margin: 30px auto; /* Auto margins for horizontal centering */
-    padding: 30px 40px;
-    background-color: var(--white);
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.04);
-    /* Remove centering for general cards if body handles login centering */
-    /* body.logged-in logic might be better in real app */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Apply card style to specific containers */
-.login-card,
-.dashboard-container,
-.new-campaign-container,
-.campaign-overview-container,
-.preview-publish-container {
-    max-width: 500px; /* Narrower for login */
-    margin: auto; /* Center the card */
-    padding: 0; /* Remove padding, handled by inner elements or sections */
-    background-color: var(--white);
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.04);
-    overflow: hidden; /* Ensures top bar radius works */
-}
-/* Wider containers for content pages */
-.dashboard-container,
-.new-campaign-container,
-.campaign-overview-container,
-.preview-publish-container {
-     max-width: 1100px;
-     padding: 30px 40px; /* Add padding back for content pages */
-}
-
-
-/* --- Login Page Specific --- */
-
-.login-top-bar {
-    background-color: var(--primary-blue);
-    padding: 15px 30px;
-    display: flex;
-    align-items: center;
-}
-
-.login-logo {
-    background-color: var(--white);
-    color: var(--primary-blue);
-    font-weight: bold;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    font-size: 1.2em;
-}
-
-.login-form-content {
-    padding: 30px 40px 40px 40px;
-}
-
-.role-tabs {
-    display: flex;
-    margin-bottom: 25px;
-    border: 1px solid var(--light-gray-border);
-    border-radius: 6px;
-    overflow: hidden; /* Clip children to rounded corners */
-}
-
-.tab {
-    flex: 1;
-    padding: 10px 15px;
-    text-align: center;
-    background-color: var(--light-gray-bg);
-    color: var(--medium-gray-text);
-    cursor: pointer;
-    border: none; /* Remove default button border */
-    font-size: 0.9em;
-    font-weight: 500;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-.tab:not(:last-child) {
-     border-right: 1px solid var(--light-gray-border);
-}
-
-.tab.active {
-    background-color: var(--primary-blue);
-    color: var(--white);
-    font-weight: 600;
-}
-.tab:hover:not(.active) {
-     background-color: #e8edf1; /* Slightly darker hover for inactive */
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-/* --- General Header (Post-Login) --- */
 header {
-    background-color: var(--white); /* Changed from blue */
-    color: var(--dark-gray-text);
-    padding: 15px 40px; /* Match container padding */
+    background-color: #007bff;
+    color: white;
+    padding: 15px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--light-gray-border);
-    border-radius: 0; /* Remove radius if it's not a card */
-    margin-bottom: 30px; /* Space below header */
+    border-radius: 8px 8px 0 0;
 }
 
 header h1 {
     margin: 0;
-    font-size: 1.5em; /* Slightly smaller */
-    color: var(--dark-gray-text); /* Use dark text color */
-}
-
-header nav span {
-    margin-right: 15px;
-    color: var(--medium-gray-text);
+    font-size: 1.8em;
 }
 
 header nav a, .logout-link {
-    color: var(--primary-blue); /* Use primary blue for links */
+    color: white;
     text-decoration: none;
     margin-left: 15px;
-    font-weight: 500;
+    font-weight: bold;
 }
 header nav a:hover, .logout-link:hover {
      text-decoration: underline;
 }
 
-/* --- Forms --- */
+
+h1, h2, h3 {
+    color: #0056b3;
+}
+
+/* Buttons */
+.button, button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* For <a> styled as buttons */
+    display: inline-block; /* For <a> styled as buttons */
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+.button:hover, button:hover {
+    background-color: #0056b3;
+}
+
+/* Forms */
 label {
     display: block;
-    margin-bottom: 6px;
-    font-weight: 500; /* Medium weight */
-    font-size: 0.9em;
-    color: var(--dark-gray-text); /* Darker label text */
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"],
-input[type="datetime-local"],
 textarea,
 select {
-    width: 100%; /* Full width within container */
-    padding: 10px 12px;
-    margin-bottom: 5px; /* Reduce space below input */
-    border: 1px solid var(--light-gray-border);
-    border-radius: 6px;
-    background-color: var(--white);
-    font-size: 1em;
-    color: var(--dark-gray-text);
-    box-sizing: border-box; /* Include padding and border in width */
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-input::placeholder, textarea::placeholder {
-     color: var(--medium-gray-text);
-     opacity: 0.7;
-}
-
-input:focus, textarea:focus, select:focus {
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 2px rgba(74, 85, 231, 0.2); /* Subtle focus ring */
-    outline: none;
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-width: 400px; /* Limit width */
 }
 
 textarea {
     height: 100px;
-    line-height: 1.5;
+    width: 95%;
+     max-width: 600px;
 }
 
-.form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px; /* Add space above options */
-    margin-bottom: 25px; /* Add space below options */
-}
+/* Page Specific Styles */
 
-.form-options label {
-     display: inline-flex; /* Align checkbox and text */
-     align-items: center;
-     font-size: 0.9em;
-     font-weight: normal; /* Normal weight for checkbox label */
-     color: var(--medium-gray-text);
-     margin-bottom: 0; /* Reset margin */
+/* Login Page */
+.login-form {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #fdfdfd;
+     max-width: 500px;
+     margin-left: auto;
+     margin-right: auto;
 }
-input[type="checkbox"] {
-    margin-right: 8px;
-    width: auto; /* Reset width */
-}
-
-
-/* Links */
-a {
-    color: var(--primary-blue);
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-}
-.form-options a { /* Specific link style in form options */
-     font-size: 0.9em;
-     font-weight: 500;
-}
-
-/* Buttons */
-.button, button {
-    background-color: var(--primary-blue);
-    color: var(--white);
-    padding: 12px 24px; /* More padding */
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1em;
-    font-weight: 600; /* Bolder */
+.login-form h2 {
     text-align: center;
-    width: auto; /* Default width */
-    transition: background-color 0.2s ease;
+    margin-bottom: 20px;
 }
-/* Full width button variant */
-.button.full-width, button.full-width {
-    width: 100%;
-    box-sizing: border-box;
+.role-selection label {
+    display: inline-block;
+    margin-right: 15px;
 }
 
-.button:hover, button:hover {
-    background-color: var(--primary-blue-darker);
-    text-decoration: none; /* Ensure no underline on hover */
-}
-
-/* Secondary button style (example) */
-.button.secondary, button.secondary {
-     background-color: var(--light-gray-bg);
-     color: var(--dark-gray-text);
-     border: 1px solid var(--light-gray-border);
-}
-.button.secondary:hover, button.secondary:hover {
-      background-color: #e8edf1; /* Slightly darker */
-}
-
-
-/* --- Dashboard --- */
+/* Dashboard */
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
+    gap: 20px;
     margin-top: 30px;
 }
 
 .dashboard-card {
-    border: 1px solid var(--light-gray-border);
-    padding: 25px;
+    border: 1px solid #eee;
+    padding: 20px;
     border-radius: 8px;
     text-align: center;
-    background-color: var(--white); /* Already white, but explicit */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-.dashboard-card:hover {
-    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.07), 0 3px 6px rgba(0, 0, 0, 0.05);
-    transform: translateY(-2px);
+    background-color: #fdfdfd;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 .dashboard-card h3 {
     margin-top: 0;
-    margin-bottom: 10px;
-    color: var(--dark-gray-text); /* Darker heading */
-    font-size: 1.2em;
-}
-.dashboard-card p {
-    font-size: 0.95em;
-    color: var(--medium-gray-text);
-    margin-bottom: 20px;
 }
 
-/* --- New Campaign Page --- */
+/* New Campaign Page */
 .loading-indicator {
-    display: none;
-    margin-top: 25px;
-    padding: 20px;
-    background-color: var(--light-gray-bg);
-    border: 1px solid var(--light-gray-border);
-    border-radius: 8px;
+    display: none; /* Hidden by default */
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
     text-align: center;
 }
 .loading-indicator.active {
-    display: block;
+    display: block; /* Shown when active */
 }
-.loader {
-    border: 4px solid #f3f3f3; /* Light grey */
+.loader { /* Simple CSS loader */
+    border: 4px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 4px solid var(--primary-blue); /* Blue */
+    border-top: 4px solid #007bff;
     width: 30px;
     height: 30px;
     animation: spin 1s linear infinite;
-    margin: 0 auto 15px auto; /* Center loader */
+    margin: 10px auto;
 }
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-.loading-indicator p {
-     margin: 5px 0;
-     color: var(--medium-gray-text);
-}
 
-/* --- Campaign Overview Page --- */
+
+/* Campaign Overview Page */
 .overview-layout {
     display: flex;
     gap: 30px;
-    align-items: flex-start; /* Align items top */
 }
 .main-content {
-    flex: 3;
-    min-width: 0; /* Prevent overflow issues */
+    flex: 3; /* Takes 3/4 of the space */
 }
 .chatbot-panel {
-    flex: 1;
-    border: 1px solid var(--light-gray-border);
-    padding: 20px;
+    flex: 1; /* Takes 1/4 of the space */
+    border: 1px solid #ccc;
+    padding: 15px;
     border-radius: 8px;
-    background-color: var(--white); /* White background */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    height: fit-content;
-    position: sticky;
-    top: 30px; /* Space from top */
-    min-width: 280px; /* Minimum width */
+    background-color: #f8f9fa;
+    height: fit-content; /* Adjust height based on content */
+    position: sticky; /* Make it stick on scroll */
+    top: 20px;
 }
 .chatbot-panel h3 {
     margin-top: 0;
-    border-bottom: 1px solid var(--light-gray-border);
+    border-bottom: 1px solid #eee;
     padding-bottom: 10px;
     margin-bottom: 15px;
-    font-size: 1.1em;
-     color: var(--dark-gray-text);
 }
 .chat-history {
-    height: 350px; /* Increased height */
+    height: 300px; /* Example height */
     overflow-y: auto;
-    border: 1px solid var(--light-gray-border);
-    border-radius: 6px;
+    border: 1px solid #eee;
     padding: 10px;
-    margin-bottom: 15px;
-    background-color: var(--light-gray-bg); /* Light bg for chat history */
+    margin-bottom: 10px;
+    background-color: #fff;
 }
-.chat-history p { margin: 8px 0; font-size: 0.9em; line-height: 1.4;}
-.chat-history .user-msg { text-align: right; color: var(--primary-blue); }
-.chat-history .bot-msg { text-align: left; color: var(--dark-gray-text); }
+.chat-history p { margin: 5px 0; font-size: 0.9em;}
+.chat-history .user-msg { text-align: right; color: blue;}
+.chat-history .bot-msg { text-align: left; color: green;}
 
-.chatbot-input { display: flex; gap: 5px; }
-.chatbot-input input { flex-grow: 1; margin-bottom: 0; } /* Input takes remaining space */
-.chatbot-input button { padding: 10px 15px; flex-shrink: 0; } /* Prevent button shrinking */
-
-#real-time-preview {
-     margin-top: 20px;
-     padding: 15px;
-     border: 1px dashed var(--light-gray-border);
-     background-color: #f8f9fa; /* Slightly different bg */
-     font-size: 0.9em;
-     border-radius: 6px;
+.chatbot-input input {
+    width: calc(100% - 80px); /* Adjust width considering button */
 }
-#real-time-preview p { margin: 5px 0; color: var(--medium-gray-text); }
-
+.chatbot-input button {
+    width: 70px;
+    margin-left: 5px;
+    padding: 10px 5px; /* Adjust padding */
+}
 
 .overview-section {
     margin-bottom: 30px;
-    padding: 25px;
-    border: 1px solid var(--light-gray-border);
+    padding: 20px;
+    border: 1px solid #eee;
     border-radius: 8px;
-    background-color: var(--white); /* Sections are white cards */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03); /* Subtle shadow */
+    background-color: #fdfdfd;
 }
 .overview-section h3 {
-     border-bottom: 1px solid var(--light-gray-border);
+     border-bottom: 1px solid #e0e0e0;
      padding-bottom: 10px;
-     margin-bottom: 20px;
-     font-size: 1.3em;
-     color: var(--dark-gray-text);
+     margin-bottom: 15px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
-    font-size: 0.95em;
 }
 th, td {
-    border: 1px solid var(--light-gray-border);
-    padding: 10px 12px;
+    border: 1px solid #ddd;
+    padding: 8px;
     text-align: left;
-    vertical-align: top; /* Align content top */
 }
 th {
-    background-color: var(--light-gray-bg);
-    font-weight: 600; /* Bolder header */
-    color: var(--dark-gray-text);
+    background-color: #e9ecef;
 }
-td {
-    color: var(--medium-gray-text);
-}
-td strong { color: var(--dark-gray-text); } /* Make strong text darker */
 
 .asset-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
 }
 .asset-item {
-    border: 1px solid var(--light-gray-border);
-    padding: 15px;
-    border-radius: 8px;
-    background-color: var(--white);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
 }
 .asset-item h4 {
     margin-top: 0;
     font-size: 1em;
-    color: var(--dark-gray-text);
-    border-bottom: 1px solid var(--light-gray-border);
-    padding-bottom: 8px;
+    color: #555;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
     margin-bottom: 10px;
-    font-weight: 600;
 }
 .asset-item img {
     max-width: 100%;
     height: auto;
     display: block;
     margin-bottom: 10px;
-    background-color: #eee;
-    min-height: 120px;
-    border-radius: 4px;
+    background-color: #eee; /* Placeholder background */
+    min-height: 100px; /* Placeholder height */
 }
-.asset-item p { font-size: 0.9em; margin-bottom: 8px; color: var(--medium-gray-text); }
-.asset-item p strong { color: var(--dark-gray-text); }
-.asset-item span { color: var(--dark-gray-text); } /* Ensure quote text is dark */
-.asset-options { margin-top: 10px; }
+.asset-item p { font-size: 0.9em; }
 .asset-options span {
-    font-size: 0.85em;
-    color: var(--primary-blue);
-    margin-right: 12px;
+    font-size: 0.8em;
+    color: #777;
+    margin-right: 10px;
     cursor: pointer;
-    font-weight: 500;
 }
-.asset-options span:hover { text-decoration: underline; }
+.asset-options span:hover { color: #007bff; }
 
-/* --- Preview & Publish Page --- */
+/* Preview & Publish Page */
 .preview-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin-bottom: 30px; /* Space before publish options */
+    gap: 20px;
 }
 .preview-channel {
-    border: 1px solid var(--light-gray-border);
-    padding: 20px;
+    border: 1px solid #eee;
+    padding: 15px;
     border-radius: 8px;
-    background-color: var(--white);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
 }
-.preview-channel h3 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1.2em;
-    color: var(--dark-gray-text);
-}
-.preview-channel .asset-item { /* Use asset item style within preview */
-     border: none;
-     padding: 0;
-     box-shadow: none;
-     margin-bottom: 15px;
-}
-.preview-channel label {
-    margin-top: 10px;
-    font-weight: 500;
-    font-size: 0.9em;
-}
-.preview-channel select { margin-bottom: 0; } /* Remove extra margin */
-
+.preview-channel h3 { margin-top: 0;}
 .publish-options {
     margin-top: 30px;
-    padding: 25px;
-    border: 1px solid var(--light-gray-border);
-    background-color: var(--light-gray-bg);
+    padding: 20px;
+    border: 1px solid #eee;
+    background-color: #f8f9fa;
     border-radius: 8px;
     text-align: center;
 }
-.publish-options h3 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    color: var(--dark-gray-text);
-}
 .publish-options label { margin-right: 10px; }
 .publish-options button { margin: 10px; }
-.publish-options input[type="datetime-local"] {
-     display: inline-block;
-     width: auto; /* Don't force full width */
-     margin: 0 10px;
-     vertical-align: middle; /* Align with buttons */
-}
-
-/* Utility Classes */
-.text-center { text-align: center; }
-.mt-1 { margin-top: 0.5rem; }
-.mt-2 { margin-top: 1rem; }
-.mt-3 { margin-top: 1.5rem; }
-.mb-1 { margin-bottom: 0.5rem; }
-.mb-2 { margin-bottom: 1rem; }
-.mb-3 { margin-bottom: 1.5rem; }
-
-/* Make body take up space for non-login pages */
-body.page-view {
-    display: block; /* Override flex centering */
-}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start New Campaign - Amplify MS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <header>
+        <h1>Amplify Marketing Studio</h1>
+        <nav>
+             <a href="dashboard-teacher.html">Dashboard</a>
+            <a href="index.html" class="logout-link">Logout</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h2>Start a New Marketing Campaign</h2>
+        <p>Paste the public registration link for your course below. We'll intelligently gather the details needed to generate your marketing materials.</p>
+
+        <label for="course-link">Course Registration Link:</label>
+        <textarea id="course-link" name="course-link" placeholder="e.g., https://your-course-platform.com/register/course-123"></textarea>
+
+        <button onclick="generateCampaign()">Generate Campaign Assets</button>
+
+        <div id="loading" class="loading-indicator">
+             <div class="loader"></div>
+            <p id="loading-status">Analyzing course link...</p>
+            <p>(Simulating scraping and AI generation... this will redirect shortly)</p>
+        </div>
+         <p style="font-size:0.9em; margin-top: 20px;">
+            We will attempt to scrape: Course Type, Dates, Venue, Contact Info, Teachers, and the Course URL itself.
+        </p>
+    </div>
+
+    <script>
+        function generateCampaign() {
+            const linkInput = document.getElementById('course-link');
+            const loadingDiv = document.getElementById('loading');
+            const loadingStatus = document.getElementById('loading-status');
+
+            if (linkInput.value.trim() === '') {
+                alert('Please paste a course link.');
+                return;
+            }
+
+            // Show loading indicator
+            loadingDiv.classList.add('active');
+            loadingStatus.textContent = 'Analyzing course link...';
+
+            // Simulate processing steps with timeouts
+            setTimeout(() => {
+                loadingStatus.textContent = 'Scraping course details...';
+            }, 1000);
+
+             setTimeout(() => {
+                loadingStatus.textContent = 'Generating market insights...';
+            }, 2500);
+
+            setTimeout(() => {
+                loadingStatus.textContent = 'Creating design assets...';
+            }, 4000);
+
+
+            // Simulate completion and redirect after a delay
+            setTimeout(() => {
+                window.location.href = 'campaign-overview.html'; // Redirect to the overview page
+            }, 5500);
+        }
+    </script>
+</body>
+</html>

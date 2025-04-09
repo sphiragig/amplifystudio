@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amplify Marketing Studio - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container login-form">
+        <h2>Welcome to Amplify Marketing Studio</h2>
+        <form>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <fieldset class="role-selection">
+                <legend>Select Your Role:</legend>
+                <label>
+                    <input type="radio" name="role" value="teacher" checked> Teacher
+                </label>
+                <label>
+                    <input type="radio" name="role" value="national"> National Marketing
+                </label>
+            </fieldset>
+
+            <a href="dashboard-teacher.html" class="button">Login</a>
+            <p style="font-size: 0.8em; margin-top: 10px;">(Select 'Teacher' role for this prototype flow)</p>
+        </form>
+    </div>
+</body>
+</html>

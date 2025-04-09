@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview & Publish - Amplify MS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Amplify Marketing Studio</h1>
+        <nav>
+            <a href="campaign-overview.html">Back to Overview</a>
+             <a href="dashboard-teacher.html">Dashboard</a>
+            <a href="index.html" class="logout-link">Logout</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h2>Preview & Publish Campaign: Introduction to Programming</h2>
+        <p>Review the final assets for each channel before publishing or scheduling.</p>
+         <p style="background-color: #fffbe6; border: 1px solid #ffe58f; padding: 10px; border-radius: 4px;">
+             <strong>Note:</strong> In a full application, National Marketing might need to approve this campaign before publishing is enabled.
+         </p>
+
+        <div class="preview-grid">
+            <div class="preview-channel">
+                <h3>Facebook Post Preview</h3>
+                <div class="asset-item">
+                     <img src="placeholder-image-fb-1a.png" alt="Final Facebook Asset Preview">
+                     <p><strong>Copy:</strong> Learn to code this summer! Join our Intro to Programming course. No experience needed. #coding #learntocode #anytown</p>
+                     <p><strong>Quote:</strong> "Unlock your tech potential!"</p>
+                     <p><small>Targeting: Anytown Area, Ages 16-45, Tech Interests</small></p>
+                </div>
+                <label for="fb-account">Publish to Account:</label>
+                <select id="fb-account" name="fb-account">
+                    <option value="acc1">Teacher FB Page (Linked)</option>
+                    <option value="acc2">National Marketing FB Page (Requires Approval?)</option>
+                </select>
+            </div>
+
+             <div class="preview-channel">
+                <h3>Instagram Post Preview</h3>
+                 <div class="asset-item">
+                    <img src="placeholder-image-ig-1c.png" alt="Final Instagram Asset Preview">
+                    <p><strong>Copy:</strong> Code your future! 🚀 Beginner-friendly programming course in Anytown. Sign up link in bio! #codinglife #techskills</p>
+                    <p><strong>Quote:</strong> "Start your coding journey."</p>
+                    <p><small>Targeting: Similar to Facebook</small></p>
+                 </div>
+                 <label for="ig-account">Publish to Account:</label>
+                 <select id="ig-account" name="ig-account">
+                    <option value="acc1">Teacher IG Profile (Linked)</option>
+                 </select>
+            </div>
+
+            <div class="preview-channel">
+                <h3>Email Preview</h3>
+                 <div class="asset-item">
+                    <img src="placeholder-image-email-1d.png" alt="Final Email Header Preview" style="max-height: 150px; object-fit: cover;">
+                    <p><strong>Subject:</strong> Learn Programming in Anytown!</p>
+                    <p><strong>Body:</strong> Hi [Name], Interested in learning valuable tech skills? Our Introduction to Programming course starts July 15th at the Community Tech Center. No prior experience needed! Learn Python basics, build simple projects, and kickstart your coding journey. Quote: "Build something amazing." Register Here: [Link]</p>
+                    <p><small>Sending List: Past Attendees List</small></p>
+                 </div>
+                  <label for="email-list">Send to List:</label>
+                 <select id="email-list" name="email-list">
+                     <option value="list1">Past Attendees (55 Contacts)</option>
+                     <option value="list2">Newsletter Subscribers (210 Contacts)</option>
+                 </select>
+            </div>
+
+             <div class="preview-channel">
+                <h3>WhatsApp Message Preview</h3>
+                 <div class="asset-item">
+                     <p><strong>Message:</strong> Hey! 👋 Ready to learn coding? Our Intro to Programming course starts soon in Anytown (July 15-19). Perfect for beginners! ✨ "Unlock your tech potential!" More info & sign up: [Link] </p>
+                     <p><small>Sending Method: Manual / Broadcast List</small></p>
+                 </div>
+                  <label for="whatsapp-method">Send via:</label>
+                 <select id="whatsapp-method" name="whatsapp-method">
+                     <option value="manual">Copy Text for Manual Send</option>
+                      <option value="broadcast" disabled>(Broadcast List Feature - Placeholder)</option>
+                 </select>
+             </div>
+
+        </div> <div class="publish-options">
+             <h3>Ready to Go Live?</h3>
+             <button class="button" onclick="publish('now')">Publish Now</button>
+             <input type="datetime-local" id="schedule-time" name="schedule-time" style="padding: 8px;">
+             <button class="button" style="background-color: #ffc107; color: #333;" onclick="publish('later')">Schedule for Later</button>
+        </div>
+
+         <div style="margin-top: 30px; padding: 15px; border: 1px dashed #ccc;">
+            <h4>📈 Post-Publish Analytics (Placeholder)</h4>
+            <p>Once published, performance data (views, clicks, engagement, registrations attributed to this campaign) would appear here or in a dedicated Analytics tab.</p>
+        </div>
+    </div>
+
+    <script>
+        function publish(type) {
+            if (type === 'now') {
+                alert("Prototype Action: 'Publish Now' clicked.\nIn a real app, this would trigger posts to selected channels/accounts.");
+                 // Redirect to dashboard after simulated action
+                 window.location.href = 'dashboard-teacher.html';
+            } else if (type === 'later') {
+                const scheduleTime = document.getElementById('schedule-time').value;
+                if (!scheduleTime) {
+                    alert("Please select a date and time to schedule.");
+                    return;
+                }
+                alert(`Prototype Action: 'Schedule for Later' clicked.\nCampaign scheduled for: ${scheduleTime}\nIn a real app, this would add the posts to a scheduling queue.`);
+                 // Redirect to dashboard after simulated action
+                 window.location.href = 'dashboard-teacher.html';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amplify MS - Chat Interface</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-messages" id="chat-messages">
+            </div>
+        <div class="chat-input-area">
+            <input type="text" id="user-input" placeholder="Type your message or URL...">
+            <button id="send-button" aria-label="Send Message">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3.4 20.4l17.45-7.48c.81-.35.81-1.49 0-1.84L3.4 3.6c-.66-.29-1.39.2-1.39.91L2 9.12c0 .5.37.93.87.99L17 12 2.87 13.88c-.5.07-.87.5-.87 1l.01 4.61c0 .71.73 1.2 1.39.91z"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+
+        let currentStep = 'GREETING'; // Manage conversation state
+        let campaignData = {}; // Store selections
+
+        // Function to add a message to the chat
+        function addMessage(sender, text, options = {}) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+
+            // Use innerHTML carefully to allow formatting
+            // In a real app, sanitize user input before displaying
+            messageDiv.innerHTML = text;
+
+            // Add action buttons if provided
+            if (options.buttons && options.buttons.length > 0) {
+                const buttonContainer = document.createElement('div');
+                buttonContainer.classList.add('action-buttons');
+                options.buttons.forEach(btn => {
+                    const button = document.createElement('button');
+                    button.classList.add('action-button');
+                    button.textContent = btn.label;
+                    button.onclick = () => handleUserInput(btn.value); // Simulate user typing the value
+                    buttonContainer.appendChild(button);
+                });
+                messageDiv.appendChild(buttonContainer);
+            }
+
+             // Add generated image if provided
+             if (options.imageUrl) {
+                 const img = document.createElement('img');
+                 img.src = options.imageUrl;
+                 img.alt = "Generated Campaign Image";
+                 img.classList.add('generated-image');
+                 messageDiv.appendChild(img);
+             }
+
+
+            chatMessages.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        // Function to show typing indicator
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.classList.add('message', 'bot-message', 'typing-indicator');
+            typingDiv.setAttribute('id', 'typing');
+            typingDiv.innerHTML = `<span></span><span></span><span></span>`;
+            chatMessages.appendChild(typingDiv);
+            scrollToBottom();
+        }
+
+        // Function to remove typing indicator
+        function removeTypingIndicator() {
+            const typingDiv = document.getElementById('typing');
+            if (typingDiv) {
+                typingDiv.remove();
+            }
+        }
+
+        // Function to scroll chat to the bottom
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Simulate Bot Response with Delay
+        function botRespond(text, delay = 1000, options = {}) {
+            showTypingIndicator();
+            setTimeout(() => {
+                removeTypingIndicator();
+                addMessage('bot', text, options);
+            }, delay);
+        }
+
+        // Handle User Input and Conversation Flow
+        function handleUserInput(inputValue = null) {
+            const inputText = inputValue !== null ? inputValue : userInput.value.trim();
+            if (!inputText) return;
+
+            addMessage('user', inputText); // Display user message immediately
+             if (inputValue === null) userInput.value = ''; // Clear input field only if it wasn't a button click
+
+            // --- Conversation Logic ---
+            switch (currentStep) {
+                case 'GREETING': // Should transition automatically after initial message
+                    break; // No user input expected here yet
+
+                case 'AWAITING_URL':
+                     // Basic URL check (very simplistic)
+                    if (inputText.startsWith('http://') || inputText.startsWith('https://')) {
+                        campaignData.url = inputText;
+                        botRespond("Thanks! I’m analyzing your course... 🧠", 500);
+                        // Simulate processing
+                        setTimeout(() => {
+                             botRespond(`Scraping details from the link and doing market research based on:
+                                <ul>
+                                    <li>Course type</li>
+                                    <li>City and venue</li>
+                                    <li>Teachers</li>
+                                    <li>Date, Time, and Contact Info</li>
+                                </ul>`, 2000);
+                        }, 1000);
+                         setTimeout(() => {
+                             botRespond(`🎯 Based on our research, here’s your insight report:
+                                <pre><strong>Description:</strong> Introductory course on Mindfulness Meditation techniques tailored for managing workplace stress.
+<strong>Target Audience:</strong> Professionals, executives, managers in high-pressure roles (e.g., Tech, Finance) in Anytown (Zip: 98765). Ages 30-55. Seeking stress reduction, focus improvement.
+<strong>Messaging Do's:</strong> Emphasize 'practical tools', 'stress relief', 'improved focus', 'confidential', 'fits busy schedules'.
+<strong>Messaging Don'ts:</strong> Avoid overly spiritual jargon, unrealistic promises ('eliminate all stress'), making it seem too time-consuming.
+<strong>Competitive Alternatives:</strong> Headspace/Calm apps, yoga studios offering meditation, corporate wellness programs.</pre>`, 3000);
+                        }, 3500);
+                         setTimeout(() => {
+                              botRespond(`Based on your course (assuming 'Mindfulness Meditation for Professionals'), we recommend these 3 focus topics:
+                                <ol>
+                                    <li>Stress Reduction Techniques</li>
+                                    <li>Meditation for Executives & Focus</li>
+                                    <li>Mindfulness for Work-Life Balance</li>
+                                </ol>
+                                Reply with "1", "2", or "3" to select your campaign theme.`, 1500, {
+                                  buttons: [
+                                      { label: "Topic 1", value: "1" },
+                                      { label: "Topic 2", value: "2" },
+                                      { label: "Topic 3", value: "3" }
+                                  ]
+                              });
+                              currentStep = 'AWAITING_TOPIC';
+                         }, 6000);
+                    } else {
+                        botRespond("Hmm, that doesn't look like a valid URL. Please paste the full course registration URL (starting with http:// or https://).", 500);
+                    }
+                    break;
+
+                 case 'AWAITING_TOPIC':
+                    const topicChoice = inputText;
+                    if (['1', '2', '3'].includes(topicChoice)) {
+                        campaignData.topic = topicChoice; // Store choice
+                        let topicText = "";
+                        let quotes = {};
+                        if(topicChoice === '1') { topicText = "Stress Reduction Techniques"; quotes = { short: "'Find calm in the chaos.'", medium: "'Practical mindfulness tools to manage daily stress effectively.'" };}
+                        else if (topicChoice === '2') { topicText = "Meditation for Executives & Focus"; quotes = { short: "'Clarity begins with stillness.'", medium: "'In the noise of business, meditation is your competitive edge.'" };}
+                        else { topicText = "Mindfulness for Work-Life Balance"; quotes = { short: "'Breathe. Balance. Be.'", medium: "'Integrate mindfulness into your day for better work-life harmony.'" };}
+
+                        campaignData.quotes = quotes;
+
+                         botRespond(`✍️ Great! Focusing on "${topicText}". Here are 2 quotes:
+                            <ul>
+                                <li><strong>Short:</strong> ${quotes.short}</li>
+                                <li><strong>Medium:</strong> ${quotes.medium}</li>
+                            </ul>
+                            Choose your preferred quote by replying "Short" or "Medium".`, 1500, {
+                             buttons: [
+                                 { label: "Use Short Quote", value: "Short" },
+                                 { label: "Use Medium Quote", value: "Medium" }
+                             ]
+                         });
+                         currentStep = 'AWAITING_QUOTE';
+                    } else {
+                         botRespond('Please choose a topic by replying with the number "1", "2", or "3".', 500, {
+                              buttons: [
+                                  { label: "Topic 1", value: "1" },
+                                  { label: "Topic 2", value: "2" },
+                                  { label: "Topic 3", value: "3" }
+                              ]
+                          });
+                    }
+                    break;
+
+                case 'AWAITING_QUOTE':
+                    const quoteChoice = inputText.toLowerCase();
+                     if (['short', 'medium'].includes(quoteChoice)) {
+                         campaignData.selectedQuote = campaignData.quotes[quoteChoice];
+                         botRespond(`Got it. Using quote: ${campaignData.selectedQuote}<br><br>Now, which channel do you want to create content for?`, 1000, {
+                             buttons: [
+                                 { label: "WhatsApp", value: "WhatsApp" },
+                                 { label: "Facebook", value: "Facebook" },
+                                 { label: "Instagram", value: "Instagram" },
+                                 { label: "Email", value: "Email" }
+                             ]
+                         });
+                         currentStep = 'AWAITING_CHANNEL';
+                     } else {
+                          botRespond('Please choose "Short" or "Medium" for the quote.', 500, {
+                              buttons: [
+                                 { label: "Use Short Quote", value: "Short" },
+                                 { label: "Use Medium Quote", value: "Medium" }
+                             ]
+                         });
+                     }
+                    break;
+
+                 case 'AWAITING_CHANNEL':
+                     const channelChoice = inputText;
+                     const validChannels = ['WhatsApp', 'Facebook', 'Instagram', 'Email'];
+                     if (validChannels.some(c => channelChoice.toLowerCase() === c.toLowerCase())) {
+                         campaignData.channel = channelChoice;
+                         botRespond(`📣 Generating content for ${campaignData.channel}...`, 1000);
+
+                         // Simulate generating different copy options based on channel
+                         let copyOptions = {};
+                         if (campaignData.channel.toLowerCase() === 'facebook') {
+                             copyOptions = {
+                                 '1': `Stressed executive? Find your focus. ${campaignData.selectedQuote} Our Mindfulness Meditation course helps you lead with clarity. Starts [Date] in Anytown. Link in bio! #mindfulness #executivedevelopment #stressmanagement #[YourCity]`,
+                                 '2': `Lead better, live better. ${campaignData.selectedQuote} Join fellow executives in Anytown for a practical meditation course designed for busy schedules. Details & Sign up: [Link] #meditation #leadership #wellness #[YourCityTag]`
+                             };
+                         } else if (campaignData.channel.toLowerCase() === 'instagram') {
+                             copyOptions = {
+                                 '1': `Level up your leadership. 🧠 ${campaignData.selectedQuote} Meditation tools for executive focus & calm. Anytown course starts [Date]. Link in bio. \n.\n#mindfulleadership #executivelife #meditationforfocus #[YourCity] #[CourseTag]`,
+                                 '2': `Find stillness in the storm of business. ✨ ${campaignData.selectedQuote} Our exec meditation course offers practical techniques. Anytown, [Date]. Sign up via link in bio!\n.\n#executivewellness #focus #stressrelief #[YourCityEvents]`
+                             };
+                         } else { // Default/WhatsApp/Email (simpler)
+                              copyOptions = {
+                                 '1': `Hi! Boost your focus & manage stress with our Meditation for Executives course in Anytown starting [Date]. Practical tools for busy leaders. ${campaignData.selectedQuote} More info: [Link]`,
+                                 '2': `Executive stress relief in Anytown: Join our Mindfulness course starting [Date]. Gain clarity and calm. ${campaignData.selectedQuote} Register: [Link]`
+                             };
+                         }
+                         campaignData.copyOptions = copyOptions;
+
+                         setTimeout(() => {
+                             botRespond(`Here are a couple of copy options for ${campaignData.channel}:
+                                <ol>
+                                    <li>${copyOptions['1']}</li>
+                                    <li>${copyOptions['2']}</li>
+                                </ol>
+                                Type "1" or "2" to select, or ask me to rewrite (e.g., "rewrite 1 to be shorter").`, 2500, {
+                                 buttons: [
+                                     { label: "Select Copy 1", value: "1" },
+                                     { label: "Select Copy 2", value: "2" },
+                                     { label: "Rewrite Option 1", value: "rewrite 1" }
+                                 ]
+                             });
+                             currentStep = 'AWAITING_COPY_CHOICE';
+                         }, 1500);
+
+                     } else {
+                         botRespond('Please choose a valid channel.', 500, {
+                             buttons: [
+                                 { label: "WhatsApp", value: "WhatsApp" },
+                                 { label: "Facebook", value: "Facebook" },
+                                 { label: "Instagram", value: "Instagram" },
+                                 { label: "Email", value: "Email" }
+                             ]
+                         });
+                     }
+                     break;
+
+                case 'AWAITING_COPY_CHOICE':
+                     const copyInput = inputText.toLowerCase();
+                     if (copyInput === '1' || copyInput === '2') {
+                         campaignData.selectedCopy = campaignData.copyOptions[copyInput];
+                          botRespond(`Selected copy:\n<pre>${campaignData.selectedCopy}</pre>🖼️ Would you like to generate an image for your post? Type a prompt (e.g., "calm executive meditating at desk"), or type "No".`, 1200);
+                         currentStep = 'AWAITING_IMAGE_PROMPT';
+                     } else if (copyInput.startsWith('rewrite')) {
+                         // Simulate rewriting
+                         botRespond(`Okay, let me try rewriting that... How about this?
+                             <pre>[Simulated Rewritten Copy based on '${copyInput}']\n${campaignData.selectedQuote}</pre>
+                             Type "Use this" to accept, or provide more feedback. If okay, we can move to image generation.`, 2000, {
+                              buttons: [ {label: "Use This Rewrite", value: "Use this"}]
+                          });
+                          // Keep step as AWAITING_COPY_CHOICE or move to a REWRITE_CONFIRM step
+                          // For simplicity, let's assume "Use this" leads to image prompt
+                          // A real app needs more robust rewrite loop logic
+                     } else if (copyInput === 'use this'){ // Assuming acceptance after rewrite
+                         campaignData.selectedCopy = "[Simulated Rewritten Copy...]"; // Store the rewrite
+                          botRespond(`Great! Using the rewritten copy.\n🖼️ Would you like to generate an image? Type a prompt, or type "No".`, 1200);
+                         currentStep = 'AWAITING_IMAGE_PROMPT';
+                     }
+                      else {
+                           botRespond('Please select copy "1" or "2", or ask me to "rewrite [number]".', 500, {
+                                 buttons: [
+                                     { label: "Select Copy 1", value: "1" },
+                                     { label: "Select Copy 2", value: "2" },
+                                     { label: "Rewrite Option 1", value: "rewrite 1" }
+                                 ]
+                             });
+                     }
+                    break;
+
+                 case 'AWAITING_IMAGE_PROMPT':
+                     if (inputText.toLowerCase() === 'no') {
+                         campaignData.imagePrompt = null;
+                         campaignData.generatedImageUrl = null; // No image generated
+                         botRespond(`Okay, no image generated.`, 500);
+                          // Move to final preview immediately
+                         setTimeout(() => showFinalPreview(), 1000);
+                     } else {
+                         campaignData.imagePrompt = inputText;
+                         botRespond(`Okay, generating an image based on your prompt: "${campaignData.imagePrompt}"... 🎨 This might take a moment.`, 1000);
+                         // Simulate image generation delay
+                         setTimeout(() => {
+                             // Placeholder image URL - replace with actual generation if possible or better placeholders
+                             campaignData.generatedImageUrl = `https://via.placeholder.com/400x250.png/E0E7FF/4A55E7?text=Generated+Image:+${encodeURIComponent(campaignData.imagePrompt.substring(0,20))}`; // Placeholder
+                             botRespond(`Here's the generated image:`, 1500, { imageUrl: campaignData.generatedImageUrl });
+                             setTimeout(() => showFinalPreview(), 1000); // Show preview after image
+                         }, 3500);
+                     }
+                      currentStep = 'AWAITING_FINAL_ACTION';
+                     break;
+
+                 case 'AWAITING_FINAL_ACTION':
+                      if (inputText.toLowerCase() === 'publish') {
+                          botRespond(`✅ Publishing campaign for "${campaignData.channel}" now... (Simulation complete!)`, 1500);
+                          // Reset or end conversation
+                           setTimeout(startConversation, 3000); // Restart after a delay
+                      } else if (inputText.toLowerCase() === 'review') {
+                          showFinalPreview(true); // Force showing preview again
+                      } else {
+                           botRespond('Type "Publish" to go live or "Review" to see the final post again.', 500, {
+                               buttons: [ {label:"Review", value:"Review"}, {label:"Publish", value:"Publish"} ]
+                           });
+                      }
+                      break;
+
+                 default:
+                     botRespond("I'm not sure how to handle that right now. Let's start over.", 500);
+                      startConversation();
+            }
+        }
+
+         // Function to display the final preview
+         function showFinalPreview(forceDisplay = false) {
+             if (currentStep !== 'AWAITING_FINAL_ACTION' && !forceDisplay) return; // Don't show unless at the right step or forced
+
+             let previewText = `✅ Here’s your final post preview for ${campaignData.channel}:<br>`;
+             if (campaignData.generatedImageUrl) {
+                 previewText += `<br><em>[Image Below]</em><br>`;
+             }
+             previewText += `<pre><strong>Copy:</strong> ${campaignData.selectedCopy}\n<strong>Quote:</strong> ${campaignData.selectedQuote}</pre>`;
+             previewText += `Type "Publish" to go live, or "Review" to see this again.`;
+
+             botRespond(previewText, 1000, {
+                 imageUrl: campaignData.generatedImageUrl, // Include image URL if it exists
+                 buttons: [
+                     { label: "Review Again", value: "Review" },
+                     { label: "Publish", value: "Publish" }
+                 ]
+             });
+             currentStep = 'AWAITING_FINAL_ACTION'; // Ensure state is correct
+         }
+
+
+        // Start the conversation
+        function startConversation() {
+            chatMessages.innerHTML = ''; // Clear existing messages
+             campaignData = {}; // Reset stored data
+            currentStep = 'GREETING';
+            const teacherName = "Teacher"; // Replace with dynamic name if available
+            botRespond(`Good morning, ${teacherName}! 👋 Ready to amplify your course? Please paste your course registration URL below to get started.`, 500);
+            currentStep = 'AWAITING_URL'; // Immediately wait for URL
+            userInput.placeholder = "Paste course URL here...";
+        }
+
+        // Event Listeners
+        sendButton.addEventListener('click', () => handleUserInput());
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleUserInput();
+            }
+        });
+
+        // Initialize
+        startConversation();
+    </script>
+
+</body>
+</html>
